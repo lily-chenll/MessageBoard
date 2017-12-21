@@ -10,6 +10,7 @@ export function getResponse(url, method='get', data) {
     url: baseUrl + url,
     method: method,
     crossDomain: true,
+    withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',

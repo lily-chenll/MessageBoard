@@ -1,11 +1,12 @@
 <template>
   <div class="content">
-    <el-form :model="form" status-icon :rules="rule" ref="registerForm" label-width="180px">
+    <h3>Sign Up</h3>
+    <el-form :model="form" status-icon :rules="rule" ref="registerForm" label-width="140px">
       <el-form-item label="Nick Name" prop="name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="Birth Date" prop="birth">
-        <el-date-picker type="date" palceholder="Pick your birth date" v-model="form.birth" style="width: 100%"></el-date-picker>
+        <el-date-picker type="date" palceholder="Pick your birth date" v-model="form.birth" style="width: 100%" :picker-options="pickerDate"></el-date-picker>
       </el-form-item>
       <el-form-item label="Gender" prop="gender">
         <el-radio-group v-model="form.gender">
@@ -19,11 +20,11 @@
       <el-form-item label="Confirm Password" prop="checkPass">
         <el-input v-model="form.checkPass" type="password"></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submit">Submit</el-button>
-        <el-button @click="cancel">Cancel</el-button>
-      </el-form-item>
     </el-form>
+    <div class="form-footer">
+      <el-button type="primary" @click="submit">Submit</el-button>
+      <el-button @click="cancel">Cancel</el-button>
+    </div>
   </div>
 </template>
 
@@ -37,6 +38,11 @@
           gender: '',
           password: '',
           checkPass: '',
+        },
+        pickerDate: {
+          disabledDate(time) {
+            return time.getTime() > Date.now();
+          },
         },
         rule: {
           name: [
@@ -84,7 +90,7 @@
             const data = {
               name: this.form.name,
               password: this.form.password,
-              birth: this.utils.convertToTimestamp(this.form.birth),
+              birthSecond: this.utils.convertToTimestamp(this.form.birth) / 1000,
               gender: this.form.gender,
             };
             this.utils.getResponse('user/register/', 'post', data).then((res) => {
@@ -100,9 +106,6 @@
                 message: error,
               });
             });
-
-          } else {
-
           }
         });
       },
@@ -115,8 +118,19 @@
 
 <style lang="scss" scoped>
   .content {
-    margin: auto;
-    padding: 0;
+    margin: 150px auto 0 auto;
+    padding: 10px;
+    width: 800px;
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
 
+    h3 {
+      width: 140px;
+      text-align: right;
+    }
+
+    .form-footer {
+      text-align: center;
+    }
   }
 </style>
