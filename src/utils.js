@@ -17,7 +17,9 @@ export function getResponse(url, method='get', data) {
     },
   };
 
-  requestParam.data = method === 'post' ? data : '';
+  (method === 'get')
+    ? requestParam.params = data
+    : requestParam.data = data;
 
   return axios.request(requestParam);
 }

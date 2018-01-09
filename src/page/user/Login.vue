@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <h3>Sign Up</h3>
-    <el-form :model="form" status-icon :rules="rule" ref="registerForm" label-width="140px">
+    <h3>Log in</h3>
+    <el-form :model="form" status-icon :rules="rule" ref="registerForm" label-width="135px">
       <el-form-item label="Nick Name" prop="name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -100,6 +100,7 @@
                 message: 'Register Successfully',
                 type: 'success'
               });
+              this.$router.push({name: 'Homepage', path: 'home'});
             }).catch((error) => {
               this.$notify.error({
                 title: 'Error',
@@ -121,8 +122,8 @@
     margin: 150px auto 0 auto;
     padding: 10px;
     width: 800px;
-    background-color: #ffffff;
     border: 1px solid #d3d3d3;
+    z-index: 100;
 
     h3 {
       width: 140px;
