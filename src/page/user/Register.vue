@@ -1,6 +1,5 @@
 <template>
-  <div class="content">
-    <h3>Sign Up</h3>
+  <div>
     <el-form :model="form" status-icon :rules="rule" ref="registerForm" label-width="135px">
       <el-form-item label="Nick Name" prop="name">
         <el-input v-model="form.name" v-loading="loadName"></el-input>
@@ -152,21 +151,8 @@
   };
 </script>
 
-<style lang="scss" scoped>
-  .content {
-    margin: 150px auto 0 auto;
-    padding: 10px;
-    width: 800px;
-    border: 1px solid #d3d3d3;
-    z-index: 100;
-
-    h3 {
-      width: 140px;
-      text-align: right;
-    }
-
-    .form-footer {
-      text-align: center;
-    }
+<style scoped>
+  .form-footer {
+    text-align: center;
   }
 </style>

@@ -12,14 +12,17 @@ export function getResponse(url, method='get', data) {
     crossDomain: true,
     withCredentials: true,
     headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:8080',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     },
   };
-
-  (method === 'get')
-    ? requestParam.params = data
-    : requestParam.data = data;
+ if (data) {
+   (method === 'get')
+     ? requestParam.params = data
+     : requestParam.data = data;
+ }
 
   return axios.request(requestParam);
 }
