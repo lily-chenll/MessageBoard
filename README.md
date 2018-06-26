@@ -1,8 +1,6 @@
 # message-board
 
-> A simple Vue.js project, building a messageboard
-
-Use python/flask and mongodb to build the server which i didn't upload
+> A simple Vue.js project, building the front-end of a messageboard
 
 ## Build Setup
 
